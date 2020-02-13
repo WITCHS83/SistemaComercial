@@ -22,9 +22,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         Desktop = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
         lblData = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         Menu = new javax.swing.JMenuBar();
         MenuCadastro = new javax.swing.JMenu();
         MenuCadCliente = new javax.swing.JMenuItem();
@@ -54,14 +54,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Desktop.setLayout(DesktopLayout);
         DesktopLayout.setHorizontalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 551, Short.MAX_VALUE)
+            .addGap(0, 639, Short.MAX_VALUE)
         );
         DesktopLayout.setVerticalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 542, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icones/Logo1.png"))); // NOI18N
 
         lblUsuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblUsuario.setText("Usuário");
@@ -69,10 +67,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lblData.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblData.setText("Data");
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icones/x.png"))); // NOI18N
+
         MenuCadastro.setText("Cadastro");
 
         MenuCadCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
         MenuCadCliente.setText("Cliente");
+        MenuCadCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuCadClienteActionPerformed(evt);
+            }
+        });
         MenuCadastro.add(MenuCadCliente);
 
         MenuCadOS.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_MASK));
@@ -134,45 +139,44 @@ public class TelaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Desktop, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+                .addComponent(Desktop, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblUsuario)
-                            .addComponent(lblData))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblData)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel1)))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Desktop, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
+                .addComponent(Desktop, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addComponent(lblUsuario)
                 .addGap(30, 30, 30)
                 .addComponent(lblData)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(22, 22, 22))
+                .addGap(57, 57, 57))
         );
 
         Desktop.getAccessibleContext().setAccessibleName("");
 
-        setSize(new java.awt.Dimension(770, 630));
+        setSize(new java.awt.Dimension(997, 663));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void MenuCadUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadUsuActionPerformed
-            TelaUsuario TLUsu = new TelaUsuario();
-            TLUsu.setVisible(true);
-            Desktop.add(TLUsu);
+            TelaUsuario TLUsuario = new TelaUsuario();
+            TLUsuario.setVisible(true);
+            Desktop.add(TLUsuario);
     }//GEN-LAST:event_MenuCadUsuActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -198,6 +202,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         sobre.setVisible(true);
     }//GEN-LAST:event_MenuAjudaSobreActionPerformed
 
+    private void MenuCadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadClienteActionPerformed
+            TelaCliente cliente = new TelaCliente();
+            cliente.setVisible(true);
+            Desktop.add(cliente);
+    }//GEN-LAST:event_MenuCadClienteActionPerformed
+
     
     
 
@@ -205,7 +215,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public static javax.swing.JDesktopPane Desktop;
     private javax.swing.JMenuBar Menu;
     private javax.swing.JMenu MenuAjuda;
-    private javax.swing.JMenuItem MenuAjudaSobre;
+    public static javax.swing.JMenuItem MenuAjudaSobre;
     private javax.swing.JMenuItem MenuCadCliente;
     private javax.swing.JMenuItem MenuCadOS;
     public static javax.swing.JMenuItem MenuCadUsu;
@@ -214,7 +224,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuOpcaoSair;
     public static javax.swing.JMenu MenuRel;
     private javax.swing.JMenuItem MenuRelServicos;
-    private javax.swing.JLabel jLabel1;
+    public static javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblData;
     public static javax.swing.JLabel lblUsuario;
     // End of variables declaration//GEN-END:variables

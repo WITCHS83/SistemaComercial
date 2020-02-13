@@ -28,6 +28,7 @@ public class TelaLogin extends javax.swing.JFrame {
             pst.setString(2, txtSenha.getText());
 
             rs = pst.executeQuery();
+            
 
             if (rs.next()) {
                 String perfil = rs.getString(6);
@@ -41,6 +42,7 @@ public class TelaLogin extends javax.swing.JFrame {
                     TelaPrincipal.lblUsuario.setForeground(Color.red);
                     this.dispose();
                     conexao.close();
+                    
                 } else {
                     TelaPrincipal principal = new TelaPrincipal();
                     principal.setVisible(true);
@@ -61,12 +63,14 @@ public class TelaLogin extends javax.swing.JFrame {
         conexao = ModuloConexao.conector();
         System.out.println(conexao);
         if (conexao != null) {
-            lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icones/dbConectado.png")));
+            lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icones/dbok.png")));
         } else {
-            lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icones/dbNaoConectado.png")));
-
+            lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icones/dberror.png")));
         }
+        
+       
     }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -104,7 +108,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         lblStatus.setBackground(new java.awt.Color(100, 100, 100));
         lblStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icones/dbConectado.png"))); // NOI18N
+        lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/icones/dbok.png"))); // NOI18N
         lblStatus.setLabelFor(lblStatus);
         lblStatus.setToolTipText("");
         lblStatus.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
