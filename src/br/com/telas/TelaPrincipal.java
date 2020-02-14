@@ -1,19 +1,27 @@
 
 package br.com.telas;
 
+import br.com.infox.dal.ModuloConexao;
 import java.text.DateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import java.sql.*;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
  * @author WITCHS
  */
 public class TelaPrincipal extends javax.swing.JFrame {
+    
+    Connection conexao = null;
 
     
     public TelaPrincipal() {
         initComponents();
+        conexao = ModuloConexao.conector();
     }
 
     
@@ -31,6 +39,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         MenuCadOS = new javax.swing.JMenuItem();
         MenuCadUsu = new javax.swing.JMenuItem();
         MenuRel = new javax.swing.JMenu();
+        MenRelCli = new javax.swing.JMenuItem();
         MenuRelServicos = new javax.swing.JMenuItem();
         MenuAjuda = new javax.swing.JMenu();
         MenuAjudaSobre = new javax.swing.JMenuItem();
@@ -104,8 +113,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
         MenuRel.setText("Relatório");
         MenuRel.setEnabled(false);
 
+        MenRelCli.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_MASK));
+        MenRelCli.setText("Clientes");
+        MenRelCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenRelCliActionPerformed(evt);
+            }
+        });
+        MenuRel.add(MenRelCli);
+
         MenuRelServicos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
         MenuRelServicos.setText("Serviços");
+        MenuRelServicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuRelServicosActionPerformed(evt);
+            }
+        });
         MenuRel.add(MenuRelServicos);
 
         Menu.add(MenuRel);
@@ -219,11 +242,40 @@ public class TelaPrincipal extends javax.swing.JFrame {
             Desktop.add(OS);
     }//GEN-LAST:event_MenuCadOSActionPerformed
 
+    private void MenRelCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenRelCliActionPerformed
+            int confirma = JOptionPane.showConfirmDialog(null, "Confirma a visualização deste relatório?", "Atenção", JOptionPane.YES_NO_OPTION);
+            if(confirma == JOptionPane.YES_NO_OPTION){
+                try {
+                    JasperPrint print = JasperFillManager.fillReport("C:/Reports/Clientes.jasper",null,conexao);
+                    JasperViewer.viewReport(print, false);
+                    
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
+                    
+                }
+            }
+    }//GEN-LAST:event_MenRelCliActionPerformed
+
+    private void MenuRelServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuRelServicosActionPerformed
+            int confirma = JOptionPane.showConfirmDialog(null, "Confirma a visualização deste relatório?", "Atenção", JOptionPane.YES_NO_OPTION);
+            if(confirma == JOptionPane.YES_NO_OPTION){
+                try {
+                    JasperPrint print = JasperFillManager.fillReport("C:/Reports/OrdemServicos.jasper",null,conexao);
+                    JasperViewer.viewReport(print, false);
+                    
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
+                    
+                }
+            }
+    }//GEN-LAST:event_MenuRelServicosActionPerformed
+
     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane Desktop;
+    private javax.swing.JMenuItem MenRelCli;
     private javax.swing.JMenuBar Menu;
     private javax.swing.JMenu MenuAjuda;
     public static javax.swing.JMenuItem MenuAjudaSobre;
